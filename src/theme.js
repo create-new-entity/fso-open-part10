@@ -6,7 +6,8 @@ const theme = {
     textSecondary: '#586069',
     primary: '#0366d6',
     appBar: '#24292e',
-    white: '#ffffff'
+    white: '#ffffff',
+    red: '#d73a4a'
   },
   fontSizes: {
     body: 14,
