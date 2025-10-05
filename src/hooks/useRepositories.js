@@ -1,27 +1,16 @@
 
 
-import { useState, useEffect } from 'react';
+import { GET_REPOSITORIES } from '../graphql/queries';
+import { useQuery } from '@apollo/client/react';
 
 const useRepositories = () => {
-  const [repositories, setRepositories] = useState();
-  const [loading, setLoading] = useState(false);
+  const { data, error, loading } = useQuery(GET_REPOSITORIES, { fetchPolicy: 'cache-and-network' });
 
-  const fetchRepositories = async () => {
-    setLoading(true);
+  if(loading) {
+    return { repositories: null }
+  }
 
-    // Replace the IP address part with your own IP address!
-    const response = await fetch('http://172.20.10.6:5001/api/repositories');
-    const json = await response.json();
-
-    setLoading(false);
-    setRepositories(json);
-  };
-
-  useEffect(() => {
-    fetchRepositories();
-  }, []);
-
-  return { repositories, loading, refetch: fetchRepositories };
+  return { repositories: data.repositories };
 };
 
 export default useRepositories;
