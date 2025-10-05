@@ -10,15 +10,18 @@ const styles = StyleSheet.create({
     height: 50,
     backgroundColor: theme.colors.appBar,
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-end',
-    alignItems: 'flex-start',
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'flex-end',
     gap: 5,
     paddingLeft: 5,
     paddingBottom: 5
   },
   containerText: {
-    color: theme.colors.white
+    color: theme.colors.white,
+    display: 'flex',
+    flexDirection: 'flex-start',
+    gap: 5
   }
 });
 
@@ -29,6 +32,12 @@ const AppBar = () => {
         <AppBarTab
             text={'Repositories'}
             textStyles={styles.containerText}
+            linkTo={'/'}
+        />
+        <AppBarTab
+            text={'Sign In'}
+            textStyles={styles.containerText}
+            linkTo={'/sign_in'}
         />
     </View>
   );
