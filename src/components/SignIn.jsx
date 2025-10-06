@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { TextInput, Button, StyleSheet, View, Text } from 'react-native';
 import * as yup from 'yup';
 import theme from '../theme';
+import { useSignIn } from '../hooks/useSignIn';
 
 const validationSchema = yup.object().shape({
   username: yup
@@ -46,13 +47,24 @@ const initialValues = {
 
 
 const SignIn = () => {
+  const [signIn, result] = useSignIn()
+
+  const onSubmit = async (values) => {
+    const { username, password } = values;
+
+    try {
+      const { data } = await signIn({ username, password });
+      console.log(data)
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+
   const formik = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: (values) => {
-      console.log(values)
-      formik.handleReset()
-    }
+    onSubmit
   });
 
   const borderErrorStyle = { borderColor: theme.colors.red }
