@@ -3,6 +3,9 @@ import { View, StyleSheet, ScrollView, Dimensions, Text } from 'react-native';
 import Constants from 'expo-constants';
 import theme from '../theme';
 import AppBarTab from './AppBarTab';
+import { useQuery } from '@apollo/client/react';
+import { SIGNED_IN_USER } from '../graphql/queries';
+import SignOutTab from './SignOut';
 
 const styles = StyleSheet.create({
   container: {
@@ -31,6 +34,11 @@ const styles = StyleSheet.create({
 });
 
 const AppBar = () => {
+
+  const { loading, error, data } = useQuery(SIGNED_IN_USER);
+
+  const notSignedIn = !loading && data && !data.me
+  const signedIn = !loading && data && data.me
   
   return (
     <View style={styles.container}>
@@ -41,11 +49,18 @@ const AppBar = () => {
                     textStyles={styles.containerText}
                     linkTo={'/'}
                 />
-                <AppBarTab
-                    text={'Sign In'}
-                    textStyles={styles.containerText}
-                    linkTo={'/sign_in'}
-                />
+                {
+                  notSignedIn &&
+                    <AppBarTab
+                      text={'Sign In'}
+                      textStyles={styles.containerText}
+                      linkTo={'/sign_in'}
+                  />
+                }
+                {
+                  signedIn &&
+                  <SignOutTab/>
+                }
             </View>
         </ScrollView>
     </View>
