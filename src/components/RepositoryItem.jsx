@@ -59,7 +59,7 @@ const RepositoryItem = (props) => {
     } = props;
 
     return (
-        <View style={styles.rootContainer}>
+        <View testID="repositoryItem" style={styles.rootContainer}>
             <View style={styles.topContainer}>
                 <Image
                     style={[styles.avatarImage]}

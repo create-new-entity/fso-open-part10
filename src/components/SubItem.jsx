@@ -17,7 +17,7 @@ const SubItem = (props) => {
     const { text, value } = props
 
     return (
-        <View style={[styles.subItemContainer]}>
+        <View testID={text} style={[styles.subItemContainer]}>
             <Text fontWeight={'bold'} style={[styles.subItem]}>{value}</Text>
             <Text color={'textSecondary'} style={[styles.subItem]}>{text}</Text>
         </View>
