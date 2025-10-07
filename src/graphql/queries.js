@@ -29,3 +29,13 @@ export const SIGNED_IN_USER = gql`{
         }
     }
 `;
+
+export const REPOSITORY_DETAILS = gql`
+    query repository($id: ID!){
+        repository(id: $id){
+            id
+            fullName
+            url
+        }
+    }
+`;
