@@ -1,4 +1,4 @@
-
+import { format } from "date-fns";
 
 export const toThousandsString = (number) => {
     if(number > 1000) {
@@ -6,3 +6,7 @@ export const toThousandsString = (number) => {
     }
     return '' + number;
 };
+
+export const formatDate = (date) => {
+    return format(date, 'dd-mm-yyyy');
+}
