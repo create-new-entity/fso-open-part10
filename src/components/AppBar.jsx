@@ -51,11 +51,18 @@ const AppBar = () => {
                 />
                 {
                   notSignedIn &&
-                  <AppBarTab
-                    text={'Sign In'}
-                    textStyles={styles.containerText}
-                    linkTo={'/sign_in'}
-                  />
+                  <>
+                    <AppBarTab
+                      text={'Sign In'}
+                      textStyles={styles.containerText}
+                      linkTo={'/sign_in'}
+                    />
+                    <AppBarTab
+                      text={'Sign Up'}
+                      textStyles={styles.containerText}
+                      linkTo={'/sign_up'}
+                    />
+                  </>
                 }
                 {
                   signedIn &&

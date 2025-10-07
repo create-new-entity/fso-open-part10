@@ -9,6 +9,7 @@ import useRepositories from '../hooks/useRepositories';
 import { useEffect } from 'react';
 import Repository from './Repository';
 import ReviewForm from './ReviewForm';
+import SignUp from './SignUp';
 
 const styles = StyleSheet.create({
   container: {
@@ -25,6 +26,7 @@ const Main = () => {
         <Route path="/create_review" element={<ReviewForm/>} />
         <Route path="/repository/:id" element={<Repository />} />
         <Route path="/sign_in" element={<SignIn/>} />
+        <Route path="/sign_up" element={<SignUp/>}/>
         <Route path="/" element={<RepositoryList />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
