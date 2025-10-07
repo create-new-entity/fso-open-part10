@@ -45,7 +45,7 @@ const validationSchema = yup.object().shape({
 });
 
 
-export const SignInContainer = (props) => {
+const SignInContainer = (props) => {
 
   const { onSubmit } = props
 
@@ -91,3 +91,5 @@ export const SignInContainer = (props) => {
     </View>
   );
 };
+
+export default SignInContainer;
