@@ -45,21 +45,28 @@ const AppBar = () => {
         <ScrollView horizontal style={styles.scrollView}>
             <View style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-start', gap: 8}}>
                 <AppBarTab
-                    text={'Repositories'}
-                    textStyles={styles.containerText}
-                    linkTo={'/'}
+                  text={'Repositories'}
+                  textStyles={styles.containerText}
+                  linkTo={'/'}
                 />
                 {
                   notSignedIn &&
-                    <AppBarTab
-                      text={'Sign In'}
-                      textStyles={styles.containerText}
-                      linkTo={'/sign_in'}
+                  <AppBarTab
+                    text={'Sign In'}
+                    textStyles={styles.containerText}
+                    linkTo={'/sign_in'}
                   />
                 }
                 {
                   signedIn &&
-                  <SignOutTab/>
+                  <>
+                    <AppBarTab
+                      text={'Create a review'}
+                      textStyles={styles.containerText}
+                      linkTo={'/create_review'}
+                    />
+                    <SignOutTab/>
+                  </>
                 }
             </View>
         </ScrollView>

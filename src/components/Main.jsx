@@ -8,6 +8,7 @@ import SignIn from './SignIn';
 import useRepositories from '../hooks/useRepositories';
 import { useEffect } from 'react';
 import Repository from './Repository';
+import ReviewForm from './ReviewForm';
 
 const styles = StyleSheet.create({
   container: {
@@ -21,6 +22,7 @@ const Main = () => {
     <View style={styles.container}>
       <AppBar/>
       <Routes>
+        <Route path="/create_review" element={<ReviewForm/>} />
         <Route path="/repository/:id" element={<Repository />} />
         <Route path="/sign_in" element={<SignIn/>} />
         <Route path="/" element={<RepositoryList />} />

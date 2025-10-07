@@ -10,8 +10,6 @@ export const useSignIn = () => {
   const apolloClient = useApolloClient();
   const navigate = useNavigate();
 
-
-
   const signIn = async ({ username, password }) => {
     const result = await mutate({
         variables: { username, password }
