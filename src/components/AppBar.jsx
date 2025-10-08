@@ -72,6 +72,11 @@ const AppBar = () => {
                       textStyles={styles.containerText}
                       linkTo={'/create_review'}
                     />
+                    <AppBarTab
+                      text={'My reviews'}
+                      textStyles={styles.containerText}
+                      linkTo={'/my_reviews'}
+                    />
                     <SignOutTab/>
                   </>
                 }

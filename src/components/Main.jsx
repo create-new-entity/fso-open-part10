@@ -10,6 +10,7 @@ import { useEffect } from 'react';
 import Repository from './Repository';
 import ReviewForm from './ReviewForm';
 import SignUp from './SignUp';
+import UserReviews from './UserReviews';
 
 const styles = StyleSheet.create({
   container: {
@@ -24,6 +25,7 @@ const Main = () => {
       <AppBar/>
       <Routes>
         <Route path="/create_review" element={<ReviewForm/>} />
+        <Route path="/my_reviews" element={<UserReviews/>}/>
         <Route path="/repository/:id" element={<Repository />} />
         <Route path="/sign_in" element={<SignIn/>} />
         <Route path="/sign_up" element={<SignUp/>}/>

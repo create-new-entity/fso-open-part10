@@ -7,7 +7,7 @@ const useCreateReview = () => {
 
     const handleCreateReview = async ({ ownerName, repositoryName, rating, review }) => {
         const variables = {
-            review: { ownerName, repositoryName, rating, text: review }
+            review: { ownerName, repositoryName, rating: parseInt(rating, 10), text: review }
         };
         const result = await createReview({ variables })
         return result.data

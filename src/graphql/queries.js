@@ -22,12 +22,26 @@ export const GET_REPOSITORIES = gql`
 }
 `;
 
-export const SIGNED_IN_USER = gql`{
+export const SIGNED_IN_USER = gql`
+    query getSignedInUser($includeReviews: Boolean = false) {
         me {
             id
             username
+            reviews @include(if: $includeReviews) {
+                edges {
+                    node {
+                        id
+                        rating
+                        createdAt
+                        text
+                        user {
+                            username
+                        }
+                    }
+                }
+            }
         }
-    }
+    } 
 `;
 
 export const REPOSITORY_DETAILS = gql`

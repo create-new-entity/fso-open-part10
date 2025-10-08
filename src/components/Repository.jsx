@@ -44,7 +44,7 @@ const styles = {
     }
 };
 
-const ReviewItem = (props) => {
+export const ReviewItem = (props) => {
     const { review } = props;
     const { createdAt, rating, text, user } = review
     return (
