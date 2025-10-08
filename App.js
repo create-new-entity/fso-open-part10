@@ -7,6 +7,7 @@ import AuthStorageContext from './src/contexts/AuthStorageContext';
 import AuthStorage from './src/utils/authStorage';
 import { PaperProvider } from 'react-native-paper';
 import SortRepositoresProvider from './src/contexts/SortRepositoriesContext';
+import { RepositorySearchProvider } from './src/contexts/RepositorySearchFieldContext';
 
 
 const authStorage = new AuthStorage();
@@ -19,11 +20,13 @@ const App = () => {
       <NativeRouter>
         <ApolloProvider client={apolloClient}>
           <AuthStorageContext.Provider value={authStorage}>
-            <SortRepositoresProvider>
-              <PaperProvider>
-                <Main />
-              </PaperProvider>
-            </SortRepositoresProvider>
+            <RepositorySearchProvider>
+              <SortRepositoresProvider>
+                <PaperProvider>
+                  <Main />
+                </PaperProvider>
+              </SortRepositoresProvider>
+            </RepositorySearchProvider>
           </AuthStorageContext.Provider>
         </ApolloProvider>
       </NativeRouter>

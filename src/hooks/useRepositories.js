@@ -1,15 +1,23 @@
 
 
+import { useRepositorySearchContext } from '../contexts/RepositorySearchFieldContext';
 import { useSortRepositories } from '../contexts/SortRepositoriesContext';
 import { GET_REPOSITORIES } from '../graphql/queries';
 import { useQuery } from '@apollo/client/react';
 
 const useRepositories = () => {
+  const { searchKeyword } = useRepositorySearchContext();
   const { variables: selectedVariables } = useSortRepositories();
+
   const result = useQuery(GET_REPOSITORIES, {
     fetchPolicy: 'cache-and-network',
-    variables: { orderBy: selectedVariables?.orderBy, orderDirection: selectedVariables?.orderDirection }
+    variables: {
+      orderBy: selectedVariables?.orderBy,
+      orderDirection: selectedVariables?.orderDirection,
+      searchKeyword
+    }
   });
+  
   const{ data, error, loading } = result
 
   if(loading) {
