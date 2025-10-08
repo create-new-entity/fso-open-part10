@@ -3,6 +3,7 @@ import { SIGNED_IN_USER } from "../graphql/queries";
 import { ReviewItem } from "./Repository";
 import { FlatList } from "react-native";
 import { ItemSeparator } from "./RepositoryListContainer";
+import ReviewActions from "./ReviewActions";
 
 const styles = {
     flatList: {
@@ -24,7 +25,7 @@ const UserReviews = () => {
         <FlatList
             style={styles.flatList}
             data={reviews}
-            renderItem={({ item }) => <ReviewItem review={item} />}
+            renderItem={({ item }) => <ReviewItem review={item} reviewActions={<ReviewActions reviewId={item.id} repositoryId={item.repositoryId}/>}/>}
             keyExtractor={({ id }) => id}
             ItemSeparatorComponent={ItemSeparator}
         />

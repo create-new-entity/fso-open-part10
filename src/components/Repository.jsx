@@ -45,18 +45,21 @@ const styles = {
 };
 
 export const ReviewItem = (props) => {
-    const { review } = props;
+    const { review, reviewActions = null } = props;
     const { createdAt, rating, text, user } = review
     return (
-        <View style={styles.reviewItemContainer}>
-            <View style={styles.ratingContainer}>
-                <Text color={'primary'}>{rating}</Text>
+        <View>
+            <View style={styles.reviewItemContainer}>
+                <View style={styles.ratingContainer}>
+                    <Text color={'primary'}>{rating}</Text>
+                </View>
+                <View style={styles.detailsContainer}>
+                    <Text fontWeight={'bold'}>{user.username}</Text>
+                    <Text color={'textSecondary'}>{formatDate(createdAt)}</Text>
+                    <Text >{text}</Text>
+                </View>
             </View>
-            <View style={styles.detailsContainer}>
-                <Text fontWeight={'bold'}>{user.username}</Text>
-                <Text color={'textSecondary'}>{formatDate(createdAt)}</Text>
-                <Text >{text}</Text>
-            </View>
+            {reviewActions}
         </View>
     );
 };
