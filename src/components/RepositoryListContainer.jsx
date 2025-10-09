@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
 export const ItemSeparator = () => <View style={styles.separator} />;
 
 const RepositoryListContainer = (props) => {
-  const { repositories } = props;
+  const { repositories, onEndReach } = props;
 
   // Get the nodes from the edges array
   const repositoryNodes = repositories
@@ -28,6 +28,8 @@ const RepositoryListContainer = (props) => {
           renderItem={({ item }) => <RepositoryItem {...item}/>}
           keyExtractor={item => item.id}
           ListHeaderComponent={() => <RepositoriesSortMenu/>}
+          onEndReached={onEndReach}
+          onEndReachedThreshold={0.5}
       />
     </>
   );
