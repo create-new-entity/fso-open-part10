@@ -1,5 +1,5 @@
 import { useParams } from "react-router-native";
-import useRepositories from "../hooks/useRepositories";
+import useRepositories, { CHUNK_SIZE } from "../hooks/useRepositories";
 import RepositoryItem from "./RepositoryItem";
 import { useQuery } from "@apollo/client/react";
 import { REPOSITORY_DETAILS, REPOSITORY_REVIEWS } from "../graphql/queries";
@@ -65,9 +65,9 @@ export const ReviewItem = (props) => {
 };
 
 const RepositoryReviews = (props) => {
-    const { repository, repositoryUrl } = props
+    const { repository, repositoryUrl, onEndReach } = props
     const resultRepositoryReviews = useQuery(REPOSITORY_REVIEWS, {
-        variables: { id: repository.id }
+        variables: { id: repository.id, first: CHUNK_SIZE }
     });
     const { data } = resultRepositoryReviews;
 
@@ -96,6 +96,8 @@ const RepositoryReviews = (props) => {
             keyExtractor={({ id }) => id}
             ListHeaderComponent={listHeaderComponent}
             ItemSeparatorComponent={ItemSeparator}
+            onEndReached={onEndReach}
+            onEndReachedThreshold={0.5}
         />
     );
 }
@@ -104,10 +106,26 @@ const Repository = (props) => {
     const { repository } = props;
 
     const resultRepositoryDetails = useQuery(REPOSITORY_DETAILS, {
-        variables: { id: repository.id }
+        variables: { id: repository.id, first: CHUNK_SIZE, }
     });
 
-    const { data } = resultRepositoryDetails;
+    const { data, fetchMore, loading } = resultRepositoryDetails;
+
+    const handleFetchMore = () => {
+        const canFetchMore = !loading && data?.repository.reviews.pageInfo.hasNextPage;
+
+        if (!canFetchMore) {
+            return;
+        }
+
+        fetchMore({
+            variables: {
+                id: repository.id,
+                first: CHUNK_SIZE,
+                after: data.repository.reviews.pageInfo.endCursor
+            }
+        });
+    };
 
     const successFullyLoaded = isSuccessFullyLoaded(resultRepositoryDetails);
 
@@ -117,6 +135,7 @@ const Repository = (props) => {
             <RepositoryReviews
                 repository={repository}
                 repositoryUrl={repositoryUrl}
+                onEndReach={handleFetchMore}
             />
         );
     }

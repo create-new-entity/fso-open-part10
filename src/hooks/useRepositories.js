@@ -5,7 +5,7 @@ import { useSortRepositories } from '../contexts/SortRepositoriesContext';
 import { GET_REPOSITORIES } from '../graphql/queries';
 import { useQuery } from '@apollo/client/react';
 
-const CHUNK_SIZE = 8;
+export const CHUNK_SIZE = 8;
 
 const useRepositories = () => {
   const { searchKeyword } = useRepositorySearchContext();

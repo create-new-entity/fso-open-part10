@@ -64,11 +64,33 @@ export const SIGNED_IN_USER = gql`
 `;
 
 export const REPOSITORY_DETAILS = gql`
-    query repository($id: ID!){
+    query repository($id: ID!, $first: Int, $after: String){
         repository(id: $id){
             id
             fullName
             url
+            reviews(first: $first, after: $after) {
+                totalCount
+                edges {
+                    node {
+                        id
+                        text
+                        rating
+                        createdAt
+                        repositoryId
+                        user {
+                            id
+                            username
+                        }
+                    }
+                    cursor
+                }
+                pageInfo {
+                    endCursor
+                    startCursor
+                    hasNextPage
+                }
+            }
         }
     }
 `;
