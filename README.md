@@ -1,2 +1,1 @@
-
-Part 10 React Native
+This repository is actually Part 10 of [this repository](https://github.com/create-new-entity/fso-open). Please click that link and checkout the README portion to get the details.
